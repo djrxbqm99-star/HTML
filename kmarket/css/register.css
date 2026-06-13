@@ -49,14 +49,8 @@
             font-size: 13px;
         }
 
-        .header-nav a {
-            color: #555;
-        }
-
-        .header-nav a:hover {
-            color: #4CAF50;
-        }
-
+        .header-nav a { color: #555; }
+        .header-nav a:hover { color: #4CAF50; }
         .header-nav .active {
             color: #4CAF50;
             font-weight: bold;
@@ -66,94 +60,165 @@
         main {
             max-width: 700px;
             margin: 50px auto;
-            padding: 0 20px;
+            padding: 0 20px 60px;
         }
 
-        .terms-title {
-            font-size: 22px;
+        /* 섹션 타이틀 */
+        .section-title {
+            font-size: 18px;
             font-weight: bold;
-            text-align:  left;
-            margin-bottom: 30px;
-            padding-bottom: 16px;
+            padding-bottom: 12px;
             border-bottom: 2px solid #333;
+            margin-bottom: 0;
         }
 
-        /* 약관 항목 */
-        .terms-item {
-            margin-bottom: 20px;
-        }
-
-        .terms-label {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 6px;
-        }
-
-        .terms-label-left {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 2px 8px;
-            font-size: 11px;
-            font-weight: bold;
-            border-radius: 2px;
-            color: #fff;
-        }
-
-        .badge-required {
-            background-color: #c0392b;
-        }
-
-        .badge-optional {
-            background-color: #888;
-        }
-
-        .terms-label-text {
-            font-size: 13px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .terms-agree {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            color: #333;
-            cursor: pointer;
-        }
-
-        .terms-agree input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            cursor: pointer;
-        }
-
-        .terms-textarea {
+        /* 폼 테이블 */
+        .form-table {
             width: 100%;
-            height: 90px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            font-size: 12px;
-            color: #555;
-            resize: none;
-            background-color: #fff;
-            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
-            line-height: 1.6;
+            border-collapse: collapse;
         }
 
-        /* 동의하기 버튼 */
+        .form-table tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-table th {
+            width: 120px;
+            padding: 14px 10px;
+            text-align: left;
+            font-weight: normal;
+            font-size: 13px;
+            color: #333;
+            vertical-align: middle;
+            white-space: nowrap;
+            background-color: #f7f7f7;
+        }
+
+        .form-table td {
+            padding: 10px 10px;
+            vertical-align: middle;
+        }
+
+        /* 구분선 (계정정보 / 개인정보 사이) */
+        .form-table tr.divider td,
+        .form-table tr.divider th {
+            padding: 0;
+            height: 16px;
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* input 기본 */
+        .form-table input[type="text"],
+        .form-table input[type="password"],
+        .form-table input[type="email"],
+        .form-table input[type="tel"],
+        .form-table input[type="date"] {
+            height: 34px;
+            border: 1px solid #ccc;
+            padding: 0 10px;
+            font-size: 13px;
+            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+            color: #333;
+            outline: none;
+        }
+
+        .form-table input[type="text"]:focus,
+        .form-table input[type="password"]:focus,
+        .form-table input[type="email"]:focus,
+        .form-table input[type="tel"]:focus {
+            border-color: #4CAF50;
+        }
+
+        .input-id    { width: 180px; }
+        .input-pw    { width: 220px; }
+        .input-name  { width: 160px; }
+        .input-date  { width: 160px; }
+        .input-email { width: 200px; }
+        .input-tel   { width: 200px; }
+        .input-addr1 { width: 140px; }
+        .input-addr2,
+        .input-addr3 { width: 320px; }
+
+        .hint {
+            margin-left: 8px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* 성별 라디오 */
+        .gender-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .gender-group label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .gender-group input[type="radio"] {
+            cursor: pointer;
+        }
+
+        /* 주소 */
+        .addr-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .addr-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* 인증 버튼 */
+        .btn-verify {
+            height: 34px;
+            padding: 0 14px;
+            background-color: #c0392b;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+        }
+
+        .btn-verify:hover {
+            background-color: #a93226;
+        }
+
+        /* 우편번호 검색 버튼 */
+        .btn-postcode {
+            height: 34px;
+            padding: 0 10px;
+            background-color: #555;
+            color: #fff;
+            font-size: 12px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+        }
+
+        .btn-postcode:hover {
+            background-color: #333;
+        }
+
+        /* 회원가입 버튼 */
         .btn-area {
             margin-top: 30px;
             text-align: center;
         }
 
-        .btn-agree {
+        .btn-submit {
             width: 200px;
             padding: 14px 0;
             background-color: #c0392b;
@@ -162,9 +227,10 @@
             font-weight: bold;
             border: none;
             cursor: pointer;
+            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
         }
 
-        .btn-agree:hover {
+        .btn-submit:hover {
             background-color: #a93226;
         }
 
@@ -186,16 +252,10 @@
             gap: 24px;
             justify-content: center;
             font-size: 13px;
-            color: #555;
         }
 
-        .footer-nav a {
-            color: #555;
-        }
-
-        .footer-nav a:hover {
-            text-decoration: underline;
-        }
+        .footer-nav a { color: #555; }
+        .footer-nav a:hover { text-decoration: underline; }
 
         .footer-info-inner {
             max-width: 1200px;

@@ -12,7 +12,7 @@
     <!-- 헤더 -->
     <header>
         <div class="header-inner">
-            <a href="/kmarket/index" class="logo">CI ( 로고 )</a>
+            <a href="./login.html" class="logo">CI ( 로고 )</a>
             <nav class="header-nav">
                 <a href="./login.html">로그인</a>
                 <a href="/kmarket/member/join" class="active">회원가입</a>
@@ -142,14 +142,23 @@
             ];
 
             const allChecked = required.every(cb => cb.checked);
-
             if (!allChecked) {
                 alert('필수 약관에 모두 동의해 주세요.');
                 return;
             }
 
-            // 동의 완료 → 회원가입 폼으로 이동
-            window.location.href = '/kmarket/member/joinForm';
+            // URL에서 type 파라미터 읽기
+            const params = new URLSearchParams(window.location.search);
+            const type = params.get('type');
+
+            if (type == 'seller'){
+                window.location.href = './registerSeller.html'
+            }else{
+                window.location.href = './register.html'
+            }
+
+
+            
         }
     </script>
 

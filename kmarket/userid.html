@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>케이마켓 - 아이디 찾기</title>
+    <hr>
+    <link rel="stylesheet" href="./css/userid.css">
+</head>
+<body>
+
+    <!-- 헤더 -->
+    <header>
+        <div class="header-inner">
+            <a href="./login.html" class="logo">CI ( 로고 )</a>
+            <nav class="header-nav">
+                <a href="./login.html">로그인</a>
+                <a href="/kmarket/member/join">회원가입</a>
+                <a href="/kmarket/member/mypage">마이페이지</a>
+                <a href="/kmarket/cart">🛒 장바구니</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 메인 -->
+    <main>
+        <h2 class="section-title">아이디 찾기</h2>
+
+        <!-- ① 탭 -->
+        <div class="tab-group">
+            <div class="tab-btn active" onclick="switchTab('email')">이메일 인증</div>
+            <div class="tab-btn" onclick="switchTab('phone')">휴대폰 인증</div>
+        </div>
+
+        <div class="tab-content">
+
+            <!-- 이메일 인증 탭 -->
+            <div class="tab-panel active" id="panel-email">
+                <table class="form-table">
+                    <tr>
+                        <th>이름</th>
+                        <td>
+                            <input type="text" placeholder="이름 입력" id="email-name">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>이메일</th>
+                        <td>
+                            <div class="input-row">
+                                <input type="email" placeholder="이메일 입력" id="email-addr">
+                                <button type="button" class="btn-send" onclick="sendEmailCode()">인증번호 발급</button>
+                            </div>
+                            <div class="input-row" style="margin-top:6px;">
+                                <input type="text" placeholder="인증번호 입력" id="email-code">
+                                <button type="button" class="btn-confirm" onclick="confirmEmailCode()">확인</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <!-- 휴대폰 인증 탭 -->
+            <div class="tab-panel" id="panel-phone">
+                <table class="form-table">
+                    <tr>
+                        <th>이름</th>
+                        <td>
+                            <input type="text" placeholder="이름 입력" id="phone-name">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>휴대폰</th>
+                        <td>
+                            <div class="input-row">
+                                <input type="tel" placeholder="휴대폰 번호 입력" id="phone-num">
+                                <button type="button" class="btn-send" onclick="sendPhoneCode()">인증번호 발급</button>
+                            </div>
+                            <div class="input-row" style="margin-top:6px;">
+                                <input type="text" placeholder="인증번호 입력" id="phone-code">
+                                <button type="button" class="btn-confirm" onclick="confirmPhoneCode()">확인</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div> 
+        <p class="guide-text">
+            회원가입시 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다.<br>
+            인증번호를 입력 후 확인 버튼을 누르세요.
+        </p>
+        <!-- ③ 취소 / 다음 버튼 -->
+        <div class="btn-area">
+            <button type="button" class="btn-cancel" onclick="location.href='./login.html'">취소</button>
+            <button type="button" class="btn-next" onclick="goNext()">다음</button>
+        </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="footer-copyright">
+            Copyright © 2025 김철학 All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        let currentTab = 'email';
+        let emailVerified = false;
+        let phoneVerified = false;
+
+        // 탭 전환
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+
+            event.target.classList.add('active');
+            document.getElementById('panel-' + tab).classList.add('active');
+        }
+
+        // 이메일 인증번호 발급
+        function sendEmailCode() {
+            const email = document.getElementById('email-addr').value.trim();
+            if (!email) { alert('이메일을 입력해 주세요.'); return; }
+            alert('인증번호를 발송했습니다.\n(실제 구현 시 서버 연동 필요)');
+        }
+
+        // 이메일 인증번호 확인
+        function confirmEmailCode() {
+            const code = document.getElementById('email-code').value.trim();
+            if (!code) { alert('인증번호를 입력해 주세요.'); return; }
+            // 실제 구현 시 서버 검증
+            emailVerified = true;
+            alert('이메일 인증이 완료되었습니다.');
+        }
+
+        // 휴대폰 인증번호 발급
+        function sendPhoneCode() {
+            const phone = document.getElementById('phone-num').value.trim();
+            if (!phone) { alert('휴대폰 번호를 입력해 주세요.'); return; }
+            alert('인증번호를 발송했습니다.\n(실제 구현 시 서버 연동 필요)');
+        }
+
+        // 휴대폰 인증번호 확인
+        function confirmPhoneCode() {
+            const code = document.getElementById('phone-code').value.trim();
+            if (!code) { alert('인증번호를 입력해 주세요.'); return; }
+            // 실제 구현 시 서버 검증
+            phoneVerified = true;
+            alert('휴대폰 인증이 완료되었습니다.');
+        }
+
+        // 다음 버튼
+        function goNext() {
+            if (currentTab === 'email') {
+                const name  = document.getElementById('email-name').value.trim();
+                const email = document.getElementById('email-addr').value.trim();
+                if (!name)  { alert('이름을 입력해 주세요.'); return; }
+                if (!email) { alert('이메일을 입력해 주세요.'); return; }
+                if (!emailVerified) { alert('이메일 인증을 완료해 주세요.'); return; }
+            } else {
+                const name  = document.getElementById('phone-name').value.trim();
+                const phone = document.getElementById('phone-num').value.trim();
+                if (!name)  { alert('이름을 입력해 주세요.'); return; }
+                if (!phone) { alert('휴대폰 번호를 입력해 주세요.'); return; }
+                if (!phoneVerified) { alert('휴대폰 인증을 완료해 주세요.'); return; }
+            }
+            // 실제 구현 시 아이디 결과 페이지로 이동
+            alert('아이디 찾기 완료!\n(실제 구현 시 결과 페이지로 이동)');
+        }
+    </script>
+
+</body>
+</html>
