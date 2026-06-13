@@ -234,3 +234,91 @@
             font-size: 12px;
             color: #aaa;
         }
+
+
+
+
+
+
+        /* ===== RESULT 전용 스타일 ===== */
+        .result-wrapper {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 0 20px 60px;
+        }
+
+        .result-title {
+            font-size: 18px;
+            font-weight: bold;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #333;
+            margin-bottom: 24px;
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+        }
+
+        .result-table tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        .result-table th {
+            width: 80px;
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: normal;
+            font-size: 13px;
+            color: #333;
+            vertical-align: middle;
+            background-color: #f7f7f7;
+        }
+
+        .result-table td {
+            padding: 12px 10px;
+            font-size: 13px;
+            color: #333;
+            vertical-align: middle;
+        }
+
+        .guide-text {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 24px;
+        }
+
+        .btn-area {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn-login {
+            width: 100px;
+            padding: 12px 0;
+            background-color: #888;
+            color: #fff;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+            text-align: center;
+        }
+
+        .btn-login:hover { background-color: #666; }
+
+        .btn-findpw {
+            width: 110px;
+            padding: 12px 0;
+            background-color: #5b9bd5;
+            color: #fff;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+            text-align: center;
+        }
+
+        .btn-findpw:hover { background-color: #4a86be; }
