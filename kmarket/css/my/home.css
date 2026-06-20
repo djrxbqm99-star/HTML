@@ -71,12 +71,11 @@ main {
     padding: 0 40px;
 }
 
-/* 1번(요약정보) + 2번(사이드바) 영역을 나란히 배치 */
-.my-top {
+/* 사이드바 + 콘텐츠 영역을 나란히 배치 */
+.my-wrapper {
     display: flex;
     gap: 20px;
-    align-items: stretch;
-    margin-bottom: 24px;
+    align-items: flex-start;
 }
 
 /* ===== 2번 영역: SIDEBAR ===== */
@@ -84,14 +83,6 @@ main {
     width: 160px;
     flex-shrink: 0;
     border: 1px solid #ddd;
-}
-
-.sidebar-title {
-    font-size: 14px;
-    font-weight: bold;
-    padding: 14px 16px;
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #ddd;
 }
 
 .sidebar-menu li a {
@@ -109,19 +100,30 @@ main {
     background-color: #f9fff9;
 }
 
-/* ===== 1번 영역: 요약 정보 ===== */
+/* ===== 1번 영역: 요약 정보 (가로 풀폭, 회색바탕) ===== */
 .my-summary {
-    flex: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     border: 1px solid #ddd;
-    padding: 15px 0;
-    background-color: #fff;
+    padding: 15px 24px;
+    background-color: #f7f7f7;
+    margin-bottom: 20px;
+}
+
+.my-summary-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+.summary-items {
+    display: flex;
+    align-items: center;
 }
 
 .summary-item {
-    flex: 1;
+    width: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,8 +132,8 @@ main {
 
 .summary-label {
     font-size: 13px;
-    color: #333;
-    font-weight: bold;
+    color: #555;
+    font-weight: normal;
 }
 
 .summary-num {
@@ -147,6 +149,7 @@ main {
 
 /* ===== CONTENT AREA ===== */
 .my-content {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -562,3 +565,257 @@ footer {
     color: #333;
     border-bottom: 1px solid #eee;
 }
+
+/* ===== 판매자정보 모달 ===== */
+.modal-seller-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.modal-seller-table th {
+    width: 130px;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: left;
+    color: #333;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-seller-table td {
+    padding: 12px;
+    font-size: 13px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-seller-notice {
+    font-size: 12px;
+    color: #888;
+    margin-top: 14px;
+    line-height: 1.6;
+}
+
+.modal-btn-inquiry {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px 0;
+    background-color: #4a90d9;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-btn-inquiry:hover {
+    background-color: #3b75b3;
+}
+
+/* ===== 문의하기 모달 ===== */
+.modal-box-small {
+    width: 560px;
+}
+
+.modal-inquiry-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.modal-inquiry-table th {
+    width: 90px;
+    padding: 12px 8px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: left;
+    color: #333;
+    vertical-align: top;
+}
+
+.modal-inquiry-table td {
+    padding: 10px 8px;
+}
+
+.inquiry-radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: #333;
+    margin-right: 14px;
+    cursor: pointer;
+}
+
+.inquiry-input {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-family: inherit;
+}
+
+.inquiry-textarea {
+    width: 100%;
+    height: 140px;
+    padding: 10px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.modal-inquiry-btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.modal-btn-submit {
+    padding: 10px 28px;
+    background-color: #4a90d9;
+    color: #fff;
+    border: none;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-btn-submit:hover {
+    background-color: #3b75b3;
+}
+
+.modal-btn-cancel {
+    padding: 10px 28px;
+    background-color: #e0e0e0;
+    color: #888;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.modal-btn-cancel:hover {
+    background-color: #d5d5d5;
+}
+
+/* ===== 구매확정 모달 ===== */
+.modal-box-confirm {
+    width: 600px;
+}
+
+.modal-confirm-text {
+    width: 100%;
+    font-size: 15px;
+    color: #333;
+    line-height: 2;
+    text-align: center !important;
+    padding: 40px 0 36px;
+    margin: 0;
+}
+
+.modal-confirm-btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding-bottom: 20px;
+}
+
+/* ===== 상품평쓰기 모달 ===== */
+.modal-review-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.modal-review-table th {
+    width: 90px;
+    padding: 14px 8px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: left;
+    color: #333;
+    vertical-align: top;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-review-table td {
+    padding: 14px 8px;
+    font-size: 13px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+/* 별점 레이팅 */
+.star-rating {
+    display: inline-flex;
+    gap: 4px;
+}
+
+.star {
+    font-size: 22px;
+    color: #ddd;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.1s;
+}
+
+.star:hover {
+    color: #f5b301;
+}
+
+.star.star-filled {
+    color: #f5b301;
+}
+
+/* 내용 입력 */
+.review-textarea {
+    width: 100%;
+    height: 110px;
+    padding: 10px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+/* 사진 첨부 */
+.review-file-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.review-file-row:last-child {
+    margin-bottom: 0;
+}
+
+.review-file-btn {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    font-size: 12px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    color: #333;
+    cursor: pointer;
+}
+
+.review-file-btn:hover {
+    background-color: #e6e6e6;
+}
+
+.review-file-input {
+    display: none;
+}
+
+.review-file-name {
+    font-size: 12px;
+    color: #888;
+}
+

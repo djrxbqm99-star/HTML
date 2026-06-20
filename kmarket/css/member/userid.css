@@ -69,7 +69,7 @@ main {
 /* 사이드바와 콘텐츠를 가로 배치하기 위한 flex wrapper */
 .my-wrapper {
     display: flex;
-    gap: 30px;
+    gap: 20px;
     align-items: flex-start;
 }
 
@@ -122,9 +122,9 @@ main {
     justify-content: center;
     border: 1px solid #ddd;
     padding: 15px 0;
-    background-color: #fff;
+    background-color: #f7f7f7;   /* 회색 바탕 추가 */
+    margin-bottom: 20px;         /* 사이드바 영역과 간격 */
 }
-
 .summary-item {
     flex: 1;
     display: flex;
