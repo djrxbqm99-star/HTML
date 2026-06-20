@@ -496,91 +496,164 @@ main {
     color: #999;
 }
 
-/* ===== FOOTER ===== */
-footer {
+/* =========================================================
+   전체주문내역 페이지 전용 (orders.html)
+   ========================================================= */
+
+/* ===== 기간별조회 ===== */
+.period-search {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+    background-color: #fafafa;
+}
+
+.period-search-label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+    flex-shrink: 0;
+}
+
+.period-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.period-radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.period-divider {
+    width: 1px;
+    height: 18px;
+    background-color: #ddd;
+    flex-shrink: 0;
+}
+
+.period-select {
+    padding: 6px 8px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-family: inherit;
+    color: #333;
+    background-color: #fff;
+}
+
+.period-range {
+    gap: 6px;
+}
+
+.period-date-input {
+    padding: 5px 8px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-family: inherit;
+    color: #333;
+}
+
+.period-range-tilde {
+    color: #999;
+    font-size: 13px;
+}
+
+.btn-period-search {
+    margin-left: auto;
+    padding: 7px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.btn-period-search:hover {
+    background-color: #3d9140;
+}
+
+/* 조회 결과 없을 때 */
+.order-empty {
+    text-align: center;
+    padding: 40px 0;
+    color: #999;
+    font-size: 13px;
+}
+
+/* ===== 페이지네이션 ===== */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 18px 0;
+}
+
+.page-prev,
+.page-next {
+    font-size: 13px;
+    color: #555;
+}
+
+.page-prev:hover,
+.page-next:hover {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+.page-prev.disabled,
+.page-next.disabled {
+    color: #ccc;
+    pointer-events: none;
+}
+
+.page-numbers {
+    display: flex;
+    gap: 10px;
+}
+
+.page-numbers .page-num {
+    font-size: 13px;
+    color: #555;
+}
+
+.page-numbers .page-num:hover {
+    color: #4CAF50;
+}
+
+.page-numbers .page-num.active {
+    color: #4CAF50;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* ===== FOOTER (축약형) ===== */
+.footer-simple {
     border-top: 1px solid #ddd;
     margin-top: 60px;
 }
 
-.footer-info {
-    background-color: #f7f7f7;
-    padding: 24px 40px;
-}
-
-.footer-nav {
-    max-width: 1200px;
-    margin: 0 auto 20px auto;
-    display: flex;
-    gap: 24px;
-    justify-content: center;
-    font-size: 13px;
-    color: #555;
-}
-
-.footer-nav a {
-    color: #555;
-}
-
-.footer-nav a:hover {
-    text-decoration: underline;
-}
-
-.footer-info-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    gap: 60px;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer-logo-box {
-    width: 100px;
-    height: 70px;
-    border: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #aaa;
-    font-size: 12px;
-    flex-shrink: 0;
-    background-color: #fff;
-}
-
-.footer-company {
-    font-size: 13px;
-    line-height: 2;
-    color: #555;
-}
-
-.footer-company strong {
-    font-size: 15px;
-    color: #333;
-    display: block;
-    margin-bottom: 4px;
-}
-
-.footer-cs {
-    font-size: 13px;
-    line-height: 2;
-    color: #555;
-}
-
-.footer-cs strong {
-    font-size: 15px;
-    color: #333;
-    display: block;
-    margin-bottom: 4px;
-}
-
-.footer-copyright {
+.footer-simple .footer-copyright {
     text-align: center;
-    padding: 16px;
+    padding: 20px;
     font-size: 12px;
     color: #aaa;
-    border-top: 1px solid #eee;
 }
-
 
 /* =========================================================
    모달 공통 베이스
@@ -1007,4 +1080,3 @@ footer {
     font-size: 12px;
     color: #888;
 }
-

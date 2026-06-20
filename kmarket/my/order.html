@@ -1,10 +1,11 @@
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>마이페이지 | K-Market</title>
-<link rel="stylesheet" href="/kmarket/css/my/home.css">
+<title>전체주문내역 | K-Market</title>
+<link rel="stylesheet" href="/kmarket/css/my/order.css">
 </head>
 <body>
 
@@ -15,7 +16,7 @@
         <nav class="header-nav">
             <a href="/login">로그인</a>
             <a href="/signup">회원가입</a>
-            <a href="home.html" class="active">마이페이지</a>
+            <a href="/my/home" class="active">마이페이지</a>
             <a href="/cart">장바구니</a>
         </nav>
     </div>
@@ -53,31 +54,72 @@
     <!-- 2번 영역(사이드바) + 콘텐츠 영역을 나란히 배치 -->
     <div class="my-wrapper">
 
-        <!-- 2번 영역: 사이드바 (제목 없이 메뉴만) -->
+        <!-- 2번 영역: 사이드바 (전체주문내역 active) -->
         <aside class="sidebar">
             <nav class="sidebar-menu">
                 <ul>
-                    <li><a href="order.html" data-menu="orders">전체주문내역</a></li>
-                    <li><a href="#" data-menu="points">포인트내역</a></li>
-                    <li><a href="#" data-menu="coupons">쿠폰</a></li>
-                    <li><a href="#" data-menu="reviews">나의리뷰</a></li>
-                    <li><a href="#" data-menu="inquiry" id="sidebarInquiryBtn">문의하기</a></li>
-                    <li><a href="#" data-menu="settings">나의설정</a></li>
+                    <li><a href="/my/orders" class="active" data-menu="orders">전체주문내역</a></li>
+                    <li><a href="/my/home#points" data-menu="points">포인트내역</a></li>
+                    <li><a href="/my/home#coupons" data-menu="coupons">쿠폰</a></li>
+                    <li><a href="/my/home#reviews" data-menu="reviews">나의리뷰</a></li>
+                    <li><a href="/my/home#inquiry" id="sidebarInquiryBtn" data-menu="inquiry">문의하기</a></li>
+                    <li><a href="/my/home#settings" data-menu="settings">나의설정</a></li>
                 </ul>
             </nav>
         </aside>
 
-        <!-- 콘텐츠 영역 (배너 + 최근주문내역 + 포인트적립내역) -->
+        <!-- 콘텐츠 영역 -->
         <div class="my-content">
 
             <!-- 3번 영역: 배너 광고 -->
             <div class="my-banner">810 × 86 배너 광고</div>
 
-            <!-- 4~7번 영역: 최근주문내역 -->
+            <!-- 4번 영역: 전체주문내역 -->
             <section class="my-section">
                 <div class="section-header">
-                    <span class="section-title">최근주문내역</span>
-                    <a href="#" class="btn-more" id="moreOrdersBtn">더보기 &gt;</a>
+                    <span class="section-title">전체주문내역</span>
+                </div>
+
+                <!-- 기간별조회 -->
+                <div class="period-search">
+                    <span class="period-search-label">기간별조회</span>
+
+                    <div class="period-group">
+                        <label class="period-radio">
+                            <input type="radio" name="periodType" value="week" data-days="7">
+                            1 주일
+                        </label>
+                        <label class="period-radio">
+                            <input type="radio" name="periodType" value="halfmonth" data-days="15">
+                            15 일
+                        </label>
+                        <label class="period-radio">
+                            <input type="radio" name="periodType" value="month" data-days="30" checked>
+                            1 개월
+                        </label>
+                    </div>
+
+                    <div class="period-divider"></div>
+
+                    <div class="period-group">
+                        <select id="periodMonthSelect" class="period-select">
+                            <option value="0">이번 달</option>
+                            <option value="1">1 개월 전</option>
+                            <option value="2">2 개월 전</option>
+                            <option value="3">3 개월 전</option>
+                            <option value="4">4 개월 전</option>
+                        </select>
+                    </div>
+
+                    <div class="period-divider"></div>
+
+                    <div class="period-group period-range">
+                        <input type="date" id="periodStartDate" class="period-date-input">
+                        <span class="period-range-tilde">~</span>
+                        <input type="date" id="periodEndDate" class="period-date-input">
+                    </div>
+
+                    <button type="button" class="btn-period-search" id="periodSearchBtn">조회</button>
                 </div>
 
                 <table class="order-table">
@@ -89,213 +131,16 @@
                             <th style="width:110px;">확인 / 신청</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="js-order-row" data-date="2022-12-13" data-order-no="1012211341" data-company="(주) 상호명" data-product="상품명" data-qty="1" data-price="34,000원">
-                            <td class="order-date">2022-12-13</td>
-                            <td class="order-product">
-                                <div class="product-inner">
-                                    <div class="product-img">상품이미지</div>
-                                    <div class="product-info">
-                                        <p class="order-no"><a href="#" class="js-order-detail" data-order="1012211341">주문번호 : 1012211341</a></p>
-                                        <p class="company-name">(주) 상호명</p>
-                                        <p class="product-name">상품명</p>
-                                        <p class="product-qty">수량 : 1 개</p>
-                                        <p class="product-price">34,000원</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="order-status">배송완료</td>
-                            <td class="order-action">
-                                <div class="action-btn-group">
-                                    <a href="#" class="btn-blue js-confirm-purchase">구매확정</a>
-                                    <a href="#" class="btn-blue js-write-review">상품평쓰기</a>
-                                    <a href="#" class="btn-white js-return-request">반품신청</a>
-                                    <a href="#" class="btn-white js-exchange-request">교환신청</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="js-order-row" data-date="2022-12-13" data-order-no="1012211341" data-company="(주) 상호명" data-product="상품명" data-qty="1" data-price="34,000원">
-                            <td class="order-date">2022-12-13</td>
-                            <td class="order-product">
-                                <div class="product-inner">
-                                    <div class="product-img">상품이미지</div>
-                                    <div class="product-info">
-                                        <p class="order-no"><a href="#" class="js-order-detail" data-order="1012211341">주문번호 : 1012211341</a></p>
-                                        <p class="company-name">(주) 상호명</p>
-                                        <p class="product-name">상품명</p>
-                                        <p class="product-qty">수량 : 1 개</p>
-                                        <p class="product-price">34,000원</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="order-status">배송완료</td>
-                            <td class="order-action">
-                                <div class="action-btn-group">
-                                    <a href="#" class="btn-blue js-confirm-purchase">구매확정</a>
-                                    <a href="#" class="btn-blue js-write-review">상품평쓰기</a>
-                                    <a href="#" class="btn-white js-return-request">반품신청</a>
-                                    <a href="#" class="btn-white js-exchange-request">교환신청</a>
-                                </div>
-                            </td>
-                        </tr>
+                    <tbody id="orderListBody">
+                        <!-- JS로 동적 렌더링 -->
                     </tbody>
                 </table>
-            </section>
 
-            <!-- 포인트적립내역 -->
-            <section class="my-section">
-                <div class="section-header">
-                    <span class="section-title">포인트적립내역</span>
-                    <a href="/my/points" class="btn-more">더보기 &gt;</a>
-                </div>
-                <table class="point-table">
-                    <thead>
-                        <tr>
-                            <th>날짜</th>
-                            <th>구분</th>
-                            <th>주문번호</th>
-                            <th>적립금액</th>
-                            <th>비고</th>
-                            <th>유효기간</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>2022-12-13</td>
-                            <td>적립</td>
-                            <td>2022121001</td>
-                            <td class="point-plus">340</td>
-                            <td>상품 구매확정</td>
-                            <td>2024-12-10</td>
-                        </tr>
-                        <tr>
-                            <td>2022-12-13</td>
-                            <td>적립</td>
-                            <td>2022120601</td>
-                            <td class="point-plus">120</td>
-                            <td>상품 구매확정</td>
-                            <td>2024-12-06</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- 상품평 -->
-            <section class="my-section">
-                <div class="section-header">
-                    <span class="section-title">상품평</span>
-                    <a href="/my/reviews" class="btn-more">더보기 &gt;</a>
-                </div>
-                <table class="review-list-table">
-                    <thead>
-                        <tr>
-                            <th style="width:60px;">번호</th>
-                            <th>상품명</th>
-                            <th>내용</th>
-                            <th style="width:120px;">평점</th>
-                            <th style="width:110px;">작성일</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>상품번호 / 상품명</td>
-                            <td>배송이 빠릅니다. 잘 사용하 겠습니다 .</td>
-                            <td class="review-list-star"><span class="star-filled">★★★★</span><span class="star-empty">☆</span></td>
-                            <td>2022-12-10</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>상품번호 / 상품명</td>
-                            <td>배송이 빠릅니다. 잘 사용하 겠습니다 .</td>
-                            <td class="review-list-star"><span class="star-filled">★★★★</span><span class="star-empty">☆</span></td>
-                            <td>2022-12-06</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>상품번호 / 상품명</td>
-                            <td>배송이 빠릅니다. 잘 사용하 겠습니다 .</td>
-                            <td class="review-list-star"><span class="star-filled">★★★★</span><span class="star-empty">☆</span></td>
-                            <td>2022-12-06</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- 문의내역 (최대 5건) -->
-            <section class="my-section">
-                <div class="section-header">
-                    <span class="section-title">문의내역</span>
-                    <a href="#" class="btn-more" id="moreInquiryBtn">더보기 &gt;</a>
-                </div>
-                <table class="inquiry-list-table">
-                    <thead>
-                        <tr>
-                            <th style="width:60px;">번호</th>
-                            <th style="width:100px;">문의채널</th>
-                            <th style="width:100px;">문의유형</th>
-                            <th>제목</th>
-                            <th style="width:110px;">작성일</th>
-                            <th style="width:80px;">상태</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>고객센터</td>
-                            <td>주문 / 결제</td>
-                            <td>신용카드 결제 중 오류가 난 경우 어떻게 하나요 ?</td>
-                            <td>2022-12-12</td>
-                            <td class="inquiry-status-checking">검토중</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>고객센터</td>
-                            <td>주문 / 결제</td>
-                            <td>신용카드 결제 중 오류가 난 경우 어떻게 하나요 ?</td>
-                            <td>2022-12-12</td>
-                            <td class="inquiry-status-done">답변완료</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>판매자 게시판</td>
-                            <td>배송</td>
-                            <td>배송기간이 보통 얼마나 걸리나요 ?</td>
-                            <td>2022-12-12</td>
-                            <td class="inquiry-status-done">답변완료</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- 나의설정 -->
-            <section class="my-section">
-                <div class="section-header">
-                    <span class="section-title">나의설정</span>
-                </div>
-                <div class="my-settings-grid">
-                    <div class="my-settings-item">
-                        <p class="my-settings-label">기본배송지설정 <a href="#" class="my-settings-edit">변경</a></p>
-                        <p class="my-settings-value">
-                            부산광역시 부산진구 연동 120<br>
-                            한빛빌딩 10층<br>
-                            <span class="my-settings-meta">(최종수정일 2021-12-10)</span>
-                        </p>
-                    </div>
-                    <div class="my-settings-item">
-                        <p class="my-settings-label">Email 설정 <a href="#" class="my-settings-edit">변경</a></p>
-                        <p class="my-settings-value">
-                            abc123@naver.com<br>
-                            <span class="my-settings-meta">(최종수정일 2021-12-10)</span>
-                        </p>
-                    </div>
-                    <div class="my-settings-item">
-                        <p class="my-settings-label">휴대폰 설정 <a href="#" class="my-settings-edit">변경</a></p>
-                        <p class="my-settings-value">
-                            010-1234-1001<br>
-                            <span class="my-settings-meta">(최종수정일 2021-12-10)</span>
-                        </p>
-                    </div>
+                <!-- 페이지네이션 -->
+                <div class="pagination" id="pagination">
+                    <a href="#" class="page-prev" id="pagePrev">이전</a>
+                    <span class="page-numbers" id="pageNumbers"></span>
+                    <a href="#" class="page-next" id="pageNext">다음</a>
                 </div>
             </section>
 
@@ -303,51 +148,27 @@
     </div>
 </main>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-    <div class="footer-info">
-        <div class="footer-nav">
-            <a href="#">회사소개</a>
-            <a href="#">서비스이용약관</a>
-            <a href="#">개인정보처리방침</a>
-            <a href="#">전자금융거래약관</a>
-        </div>
-        <div class="footer-info-inner">
-            <div class="footer-logo-box">로고</div>
-            <div class="footer-company">
-                <strong>(주)케이마켓</strong>
-                부산광역시 부산진구 중앙대로 103<br>
-                대표이사 : 홍길동<br>
-                사업자등록번호 : 123-45-12345
-            </div>
-            <div class="footer-cs">
-                <strong>고객센터</strong>
-                Tel : 1234-5678 평일 09:00~18:00<br>
-                전자금융거래 분쟁 담당 : 1234-1234 (36팀) 09:00~18:00
-            </div>
-        </div>
-    </div>
+<!-- ===== FOOTER (축약형) ===== -->
+<footer class="footer-simple">
     <div class="footer-copyright">
-        Copyright &copy; 2025 김철학 All rights reserved.
+        Copyright &copy; 김철학(개발에반하다.) All rights reserved.
     </div>
 </footer>
 
 
 <!-- =========================================================
-     모달 영역 (전부 home.html 안에서 팝업으로만 동작)
+     모달 영역 (home.html과 동일한 모달 시스템 재사용)
      ========================================================= -->
 
 <!-- 주문상세 모달 (No 6-1) -->
 <div class="modal-overlay" id="orderDetailModal">
     <div class="modal-box">
-        <!-- 1번: 주문상세 모 달창(팝업) / 2번: 닫기버튼 -->
         <div class="modal-header modal-header-blue">
-            <span class="modal-title">주문상세 <span class="modal-date">20xx-12-13</span></span>
+            <span class="modal-title">주문상세 <span class="modal-date" id="detailDate">20xx-12-13</span></span>
             <button type="button" class="modal-close" data-close="orderDetailModal">&times;</button>
         </div>
 
         <div class="modal-body">
-            <!-- 3번: 주문정보 -->
             <div class="modal-section-title">주문정보</div>
             <table class="modal-order-table">
                 <thead>
@@ -360,30 +181,29 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="modal-order-date">20xx-01-01</td>
+                        <td class="modal-order-date" id="detailDate2">20xx-01-01</td>
                         <td class="modal-order-product">
                             <div class="product-inner">
                                 <div class="product-img">상품이미지</div>
                                 <div class="product-info">
-                                    <p class="order-no">주문번호 : 1012211341</p>
-                                    <p class="company-name"><a href="#" class="js-seller-info">(주) 상호명</a></p>
-                                    <p class="product-name">상품명</p>
-                                    <p class="product-qty">수량 : 1 개</p>
-                                    <p class="product-price">34,000원</p>
+                                    <p class="order-no" id="detailOrderNo">주문번호 : 1012211341</p>
+                                    <p class="company-name"><a href="#" class="js-seller-info" id="detailCompany">(주) 상호명</a></p>
+                                    <p class="product-name" id="detailProduct">상품명</p>
+                                    <p class="product-qty" id="detailQty">수량 : 1 개</p>
+                                    <p class="product-price" id="detailPrice">34,000원</p>
                                 </div>
                             </div>
                         </td>
                         <td class="modal-pay-info">
-                            <p>판매가 <span>34,000원</span></p>
+                            <p>판매가 <span id="detailPayBase">34,000원</span></p>
                             <p>할인 <span>-3,000원</span></p>
-                            <p class="modal-pay-total">결제금액 <span>34,000원</span></p>
+                            <p class="modal-pay-total">결제금액 <span id="detailPayTotal">34,000원</span></p>
                         </td>
-                        <td class="modal-order-status">배송완료</td>
+                        <td class="modal-order-status" id="detailStatus">배송완료</td>
                     </tr>
                 </tbody>
             </table>
 
-            <!-- 4번: 배송정보 -->
             <div class="modal-section-title">배송정보</div>
             <table class="modal-delivery-table">
                 <tbody>
@@ -412,14 +232,12 @@
 <!-- 판매자정보 모달 (No 6-1-2) -->
 <div class="modal-overlay" id="sellerInfoModal">
     <div class="modal-box">
-        <!-- 1번: 판매자 정보 모 달창(팝업) / 2번: 닫기버튼 -->
         <div class="modal-header modal-header-blue">
             <span class="modal-title">판매자정보</span>
             <button type="button" class="modal-close" data-close="sellerInfoModal">&times;</button>
         </div>
 
         <div class="modal-body">
-            <!-- 3번: 판매자 정보 -->
             <table class="modal-seller-table">
                 <tbody>
                     <tr>
@@ -461,7 +279,6 @@
                 ※ 위 정보는 전자상거래 법 제 20조 제 2항 및 동법 시행령 제 25조 제 2항에 의거하여 소비자보호에 의거 공개합니다
             </p>
 
-            <!-- 4번: 문의하기 클릭 시 문의하기 팝업 출력 (No 6-1-3) -->
             <button type="button" class="modal-btn-inquiry js-inquiry-from-order">문의하기</button>
         </div>
     </div>
@@ -470,14 +287,12 @@
 <!-- 문의하기 모달 (No 6-1-3) -->
 <div class="modal-overlay" id="inquiryModal">
     <div class="modal-box modal-box-small">
-        <!-- 1번: 문의하기 모달창(팝업) / 2번: 닫기버튼 -->
         <div class="modal-header modal-header-blue">
             <span class="modal-title">문의하기</span>
             <button type="button" class="modal-close" data-close="inquiryModal">&times;</button>
         </div>
 
         <div class="modal-body">
-            <!-- 3번: 문의 입력 필드 -->
             <table class="modal-inquiry-table">
                 <tbody>
                     <tr>
@@ -505,7 +320,6 @@
                 </tbody>
             </table>
 
-            <!-- 4번: 등록하기 / 취소 버튼 -->
             <div class="modal-inquiry-btn-group">
                 <button type="button" class="modal-btn-submit" id="inquirySubmitBtn">등록하기</button>
                 <button type="button" class="modal-btn-cancel" data-close="inquiryModal">취소</button>
@@ -517,14 +331,12 @@
 <!-- 구매확정 모달 (No 6-1-4) -->
 <div class="modal-overlay" id="confirmPurchaseModal">
     <div class="modal-box modal-box-confirm">
-        <!-- 1번: 구매확정 모달창(팝업) / 2번: 닫기버튼 -->
         <div class="modal-header modal-header-blue">
             <span class="modal-title">구매확정</span>
             <button type="button" class="modal-close" data-close="confirmPurchaseModal">&times;</button>
         </div>
 
         <div class="modal-body">
-            <!-- 3번: 안내문구 -->
             <p class="modal-confirm-text">
                 상품을 받으셨나요 ?<br>
                 상품을 받으신 분만 구매확정을 해주세요 .
@@ -541,19 +353,17 @@
 <!-- 상품평쓰기 모달 (No 6-1-5) -->
 <div class="modal-overlay" id="writeReviewModal">
     <div class="modal-box">
-        <!-- 1번: 상품평작성하기 모달창 / 2번: 닫기버튼 -->
         <div class="modal-header modal-header-blue">
             <span class="modal-title">상품평작성하기</span>
             <button type="button" class="modal-close" data-close="writeReviewModal">&times;</button>
         </div>
 
         <div class="modal-body">
-            <!-- 3번: 입력폼 -->
             <table class="modal-review-table">
                 <tbody>
                     <tr>
                         <th>상품명</th>
-                        <td>상품명 출력</td>
+                        <td id="reviewProductName">상품명 출력</td>
                     </tr>
                     <tr>
                         <th>만족도</th>
@@ -602,7 +412,6 @@
                 </tbody>
             </table>
 
-            <!-- 4번: 작성완료 / 취소 -->
             <div class="modal-confirm-btn-group">
                 <button type="button" class="modal-btn-submit" id="reviewSubmitBtn">작성완료</button>
                 <button type="button" class="modal-btn-cancel" data-close="writeReviewModal">취소</button>
@@ -614,14 +423,12 @@
 <!-- 반품신청 모달 (No 6-1-6) -->
 <div class="modal-overlay" id="returnRequestModal">
     <div class="modal-box">
-        <!-- 1번: 반품신청 모달창 -->
         <div class="modal-header modal-header-blue">
             <span class="modal-title">반품신청</span>
             <button type="button" class="modal-close" data-close="returnRequestModal">&times;</button>
         </div>
 
         <div class="modal-body">
-            <!-- 2번: 상품정보 -->
             <div class="modal-section-title">상품정보</div>
             <table class="modal-order-table">
                 <thead>
@@ -657,7 +464,6 @@
                 </tbody>
             </table>
 
-            <!-- 3번: 반품정보 입력 -->
             <div class="modal-section-title">반품정보 입력</div>
             <table class="modal-review-table">
                 <tbody>
@@ -689,7 +495,6 @@
                 </tbody>
             </table>
 
-            <!-- 4번: 반품신청 / 취소 -->
             <div class="modal-confirm-btn-group">
                 <button type="button" class="modal-btn-submit" id="returnSubmitBtn">반품신청</button>
                 <button type="button" class="modal-btn-cancel" data-close="returnRequestModal">취소</button>
@@ -701,14 +506,12 @@
 <!-- 교환신청 모달 (No 6-1-7) -->
 <div class="modal-overlay" id="exchangeRequestModal">
     <div class="modal-box">
-        <!-- 1번: 교환신청 모달창 -->
         <div class="modal-header modal-header-blue">
             <span class="modal-title">교환신청</span>
             <button type="button" class="modal-close" data-close="exchangeRequestModal">&times;</button>
         </div>
 
         <div class="modal-body">
-            <!-- 2번: 상품정보 -->
             <div class="modal-section-title">상품정보</div>
             <table class="modal-order-table">
                 <thead>
@@ -744,7 +547,6 @@
                 </tbody>
             </table>
 
-            <!-- 3번: 교환정보 입력 -->
             <div class="modal-section-title">교환정보 입력</div>
             <table class="modal-review-table">
                 <tbody>
@@ -776,7 +578,6 @@
                 </tbody>
             </table>
 
-            <!-- 4번: 교환신청 / 취소 -->
             <div class="modal-confirm-btn-group">
                 <button type="button" class="modal-btn-submit" id="exchangeSubmitBtn">교환신청</button>
                 <button type="button" class="modal-btn-cancel" data-close="exchangeRequestModal">취소</button>
@@ -787,16 +588,13 @@
 
 
 <script>
-    // ===== 모달 스택 관리 =====
-    // 모달을 열 때 현재 열려있는 모달은 숨기고(스택에 쌓고),
-    // 닫을 때는 스택에서 꺼내 이전 모달을 다시 보여준다.
+    // ===== 모달 스택 관리 (home.html과 동일) =====
     const modalStack = [];
 
     function openModal(modalId) {
         const modal = document.getElementById(modalId);
         if (!modal) return;
 
-        // 현재 열려있는 모달이 있으면 숨기고 스택에 저장
         const current = document.querySelector('.modal-overlay.active');
         if (current && current.id !== modalId) {
             current.classList.remove('active');
@@ -811,7 +609,6 @@
         if (!modal) return;
         modal.classList.remove('active');
 
-        // 스택에 이전 모달이 있으면 다시 열기
         if (modalStack.length > 0) {
             const prevId = modalStack.pop();
             const prevModal = document.getElementById(prevId);
@@ -819,28 +616,17 @@
         }
     }
 
-    // 닫기 버튼 공통 처리 (data-close 속성에 닫을 모달 id)
     document.querySelectorAll('[data-close]').forEach(function (btn) {
         btn.addEventListener('click', function () {
             closeModal(btn.getAttribute('data-close'));
         });
     });
 
-    // 오버레이(어두운 배경) 클릭 시 닫기
     document.querySelectorAll('.modal-overlay').forEach(function (overlay) {
         overlay.addEventListener('click', function (e) {
             if (e.target === overlay) {
                 closeModal(overlay.id);
             }
-        });
-    });
-
-    // ===== 사이드바 메뉴 =====
-    // 포인트내역 클릭 → 포인트내역 모달
-    document.querySelectorAll('[data-menu="points"]').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            e.preventDefault();
-            openModal('pointHistoryModal');
         });
     });
 
@@ -850,77 +636,7 @@
         openModal('inquiryModal');
     });
 
-    // 문의내역 더보기 클릭 → 문의하기 모달
-    document.getElementById('moreInquiryBtn').addEventListener('click', function (e) {
-        e.preventDefault();
-        openModal('inquiryModal');
-    });
-
-    // ===== 최근주문내역 영역 =====
-    // 주문번호 클릭 → 주문상세 모달
-    document.querySelectorAll('.js-order-detail').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            e.preventDefault();
-            openModal('orderDetailModal');
-        });
-    });
-
-    // 구매확정 버튼 → 구매확정 모달
-    document.querySelectorAll('.js-confirm-purchase').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            e.preventDefault();
-            openModal('confirmPurchaseModal');
-        });
-    });
-
-    // 상품평쓰기 버튼 → 상품평쓰기 모달
-    document.querySelectorAll('.js-write-review').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            e.preventDefault();
-            openModal('writeReviewModal');
-        });
-    });
-
-    // 반품신청 버튼 → 반품신청 모달 (클릭한 행의 상품정보를 모달에 채움)
-    document.querySelectorAll('.js-return-request').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const row = el.closest('.js-order-row');
-            if (row) {
-                document.getElementById('returnDate').textContent = row.getAttribute('data-date');
-                document.getElementById('returnOrderNo').textContent = '주문번호 : ' + row.getAttribute('data-order-no');
-                document.getElementById('returnCompany').textContent = row.getAttribute('data-company');
-                document.getElementById('returnProduct').textContent = row.getAttribute('data-product');
-                document.getElementById('returnQty').textContent = '수량 : ' + row.getAttribute('data-qty') + ' 개';
-                document.getElementById('returnPrice').textContent = row.getAttribute('data-price');
-            }
-
-            openModal('returnRequestModal');
-        });
-    });
-
-    // 교환신청 버튼 → 교환신청 모달 (클릭한 행의 상품정보를 모달에 채움)
-    document.querySelectorAll('.js-exchange-request').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const row = el.closest('.js-order-row');
-            if (row) {
-                document.getElementById('exchangeDate').textContent = row.getAttribute('data-date');
-                document.getElementById('exchangeOrderNo').textContent = '주문번호 : ' + row.getAttribute('data-order-no');
-                document.getElementById('exchangeCompany').textContent = row.getAttribute('data-company');
-                document.getElementById('exchangeProduct').textContent = row.getAttribute('data-product');
-                document.getElementById('exchangeQty').textContent = '수량 : ' + row.getAttribute('data-qty') + ' 개';
-                document.getElementById('exchangePrice').textContent = row.getAttribute('data-price');
-            }
-
-            openModal('exchangeRequestModal');
-        });
-    });
-
-    // ===== 주문상세 모달 내부 =====
-    // 상호명 클릭 → 판매자정보 모달 (주문상세 위에 스택)
+    // 상호명 클릭 → 판매자정보 모달
     document.querySelectorAll('.js-seller-info').forEach(function (el) {
         el.addEventListener('click', function (e) {
             e.preventDefault();
@@ -928,7 +644,7 @@
         });
     });
 
-    // 문의하기 버튼(주문상세 안) → 문의하기 모달 (주문상세 위에 스택)
+    // 문의하기 버튼(주문상세 안) → 문의하기 모달
     document.querySelectorAll('.js-inquiry-from-order').forEach(function (el) {
         el.addEventListener('click', function (e) {
             e.preventDefault();
@@ -936,26 +652,20 @@
         });
     });
 
-    // ===== 구매확정 모달 내부 =====
-    // 확인 버튼 → success 처리
+    // 구매확정 모달 확인/취소
     document.querySelectorAll('.js-confirm-ok').forEach(function (el) {
         el.addEventListener('click', function () {
-            console.log('구매확정 결과: success');
             alert('success\n구매확정이 완료되었습니다.');
             closeModal('confirmPurchaseModal');
         });
     });
-
-    // 취소 버튼 → fail 처리
     document.querySelectorAll('.js-confirm-cancel').forEach(function (el) {
         el.addEventListener('click', function () {
-            console.log('구매확정 결과: fail');
             alert('fail\n구매확정이 취소되었습니다.');
         });
     });
 
-    // ===== 상품평쓰기 모달 =====
-    // 별점 레이팅 (클릭한 별까지 채워짐)
+    // 상품평쓰기 모달 - 별점
     let selectedRating = 0;
     const starEls = document.querySelectorAll('#reviewStarRating .star');
 
@@ -973,7 +683,6 @@
         });
     });
 
-    // 파일선택 시 선택된 파일명 표시 (실제 업로드 처리는 Spring 연동 시 구현 예정)
     document.querySelectorAll('.review-file-input').forEach(function (input) {
         input.addEventListener('change', function () {
             const targetId = input.getAttribute('data-target');
@@ -986,7 +695,6 @@
         });
     });
 
-    // 작성완료 버튼 → 내용 필수(10~200자) 검증 후 alert (실제 저장 처리는 Spring 연동 시 구현 예정)
     document.getElementById('reviewSubmitBtn').addEventListener('click', function () {
         const content = document.getElementById('reviewContent').value.trim();
 
@@ -997,7 +705,6 @@
 
         alert('작성이 완료되었습니다.');
 
-        // 입력값 초기화
         selectedRating = 0;
         paintStars(0);
         document.getElementById('reviewContent').value = '';
@@ -1011,8 +718,7 @@
         closeModal('writeReviewModal');
     });
 
-    // ===== 반품신청 모달 =====
-    // 반품신청 버튼 → 사유입력 필수 검증 후 alert (실제 처리는 Spring 연동 시 구현 예정)
+    // 반품신청 모달
     document.getElementById('returnSubmitBtn').addEventListener('click', function () {
         const reason = document.getElementById('returnReason').value.trim();
         const returnType = document.querySelector('input[name="returnType"]:checked');
@@ -1021,7 +727,6 @@
             alert('반품유형을 선택해주세요.');
             return;
         }
-
         if (reason.length === 0) {
             alert('반품사유를 입력해주세요.');
             return;
@@ -1029,7 +734,6 @@
 
         alert('반품신청이 완료되었습니다.');
 
-        // 입력값 초기화
         document.getElementById('returnReason').value = '';
         document.querySelectorAll('input[name="returnType"]').forEach(function (radio) {
             radio.checked = false;
@@ -1039,8 +743,7 @@
         closeModal('returnRequestModal');
     });
 
-    // ===== 교환신청 모달 =====
-    // 교환신청 버튼 → 사유입력 필수 검증 후 alert (실제 처리는 Spring 연동 시 구현 예정)
+    // 교환신청 모달
     document.getElementById('exchangeSubmitBtn').addEventListener('click', function () {
         const reason = document.getElementById('exchangeReason').value.trim();
         const exchangeType = document.querySelector('input[name="exchangeType"]:checked');
@@ -1049,7 +752,6 @@
             alert('교환유형을 선택해주세요.');
             return;
         }
-
         if (reason.length === 0) {
             alert('교환사유를 입력해주세요.');
             return;
@@ -1057,7 +759,6 @@
 
         alert('교환신청이 완료되었습니다.');
 
-        // 입력값 초기화
         document.getElementById('exchangeReason').value = '';
         document.querySelectorAll('input[name="exchangeType"]').forEach(function (radio) {
             radio.checked = false;
@@ -1066,6 +767,316 @@
 
         closeModal('exchangeRequestModal');
     });
+
+
+    // =====================================================
+    // ===== 전체주문내역: 더미 데이터 / 기간조회 / 페이지네이션 =====
+    // =====================================================
+
+    // ---- 더미 주문 데이터 50건 생성 (페이지당 10건 x 5페이지) ----
+    const PAGE_SIZE = 10;
+    const TOTAL_PAGES = 5;
+    const today = new Date();
+
+    function formatDate(d) {
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return y + '-' + m + '-' + day;
+    }
+
+    const statusList = ['배송완료', '배송중', '결제완료'];
+    const orderData = [];
+
+    for (let i = 0; i < PAGE_SIZE * TOTAL_PAGES; i++) {
+        // 최근 5개월 범위 안에서 날짜를 역순으로 분산 배치
+        const d = new Date(today);
+        d.setDate(d.getDate() - i * 3); // 3일 간격으로 과거로 이동 (최근 5개월 커버)
+
+        const orderNo = '10122' + String(11341 - i).padStart(5, '0');
+        const status = statusList[i % statusList.length];
+
+        orderData.push({
+            date: formatDate(d),
+            orderNo: orderNo,
+            company: '(주) 상호명',
+            product: '상품명',
+            qty: 1,
+            price: '34,000원',
+            status: status
+        });
+    }
+
+    // ---- 상태 행 렌더링 ----
+    let currentPage = 1;
+    let filteredData = orderData.slice(); // 기간조회 필터 적용 결과 (기본: 전체)
+
+    function getActionButtonsHtml(item) {
+        // 상태에 따라 버튼 노출 여부를 다르게 하지 않고
+        // 피그마 기준표에 명시된 4개 버튼을 동일하게 출력 (기준표에 상태별 분기 명시 없음)
+        return `
+            <a href="#" class="btn-blue js-confirm-purchase">구매확정</a>
+            <a href="#" class="btn-blue js-write-review">상품평쓰기</a>
+            <a href="#" class="btn-white js-return-request">반품신청</a>
+            <a href="#" class="btn-white js-exchange-request">교환신청</a>
+        `;
+    }
+
+    function renderOrderRows() {
+        const tbody = document.getElementById('orderListBody');
+        tbody.innerHTML = '';
+
+        const startIdx = (currentPage - 1) * PAGE_SIZE;
+        const pageItems = filteredData.slice(startIdx, startIdx + PAGE_SIZE);
+
+        if (pageItems.length === 0) {
+            const emptyRow = document.createElement('tr');
+            emptyRow.innerHTML = '<td colspan="4" class="order-empty">조회된 주문내역이 없습니다.</td>';
+            tbody.appendChild(emptyRow);
+            return;
+        }
+
+        pageItems.forEach(function (item) {
+            const tr = document.createElement('tr');
+            tr.className = 'js-order-row';
+            tr.setAttribute('data-date', item.date);
+            tr.setAttribute('data-order-no', item.orderNo);
+            tr.setAttribute('data-company', item.company);
+            tr.setAttribute('data-product', item.product);
+            tr.setAttribute('data-qty', item.qty);
+            tr.setAttribute('data-price', item.price);
+
+            tr.innerHTML = `
+                <td class="order-date">${item.date}</td>
+                <td class="order-product">
+                    <div class="product-inner">
+                        <div class="product-img">상품이미지</div>
+                        <div class="product-info">
+                            <p class="order-no"><a href="#" class="js-order-detail" data-order="${item.orderNo}">주문번호 : ${item.orderNo}</a></p>
+                            <p class="company-name">${item.company}</p>
+                            <p class="product-name">${item.product}</p>
+                            <p class="product-qty">수량 : ${item.qty} 개</p>
+                            <p class="product-price">${item.price}</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="order-status">${item.status}</td>
+                <td class="order-action">
+                    <div class="action-btn-group">
+                        ${getActionButtonsHtml(item)}
+                    </div>
+                </td>
+            `;
+
+            tbody.appendChild(tr);
+        });
+
+        attachRowEventListeners();
+    }
+
+    // ---- 행 단위 이벤트 바인딩 (렌더링마다 재바인딩 필요) ----
+    function attachRowEventListeners() {
+        document.querySelectorAll('.js-order-detail').forEach(function (el) {
+            el.addEventListener('click', function (e) {
+                e.preventDefault();
+                const row = el.closest('.js-order-row');
+                if (row) {
+                    const orderNo = row.getAttribute('data-order-no');
+                    const date = row.getAttribute('data-date');
+                    document.getElementById('detailDate').textContent = date;
+                    document.getElementById('detailDate2').textContent = date;
+                    document.getElementById('detailOrderNo').textContent = '주문번호 : ' + orderNo;
+                    document.getElementById('detailCompany').textContent = row.getAttribute('data-company');
+                    document.getElementById('detailProduct').textContent = row.getAttribute('data-product');
+                    document.getElementById('detailQty').textContent = '수량 : ' + row.getAttribute('data-qty') + ' 개';
+                    document.getElementById('detailPrice').textContent = row.getAttribute('data-price');
+                    document.getElementById('detailStatus').textContent = row.querySelector('.order-status') ? row.querySelector('.order-status').textContent : '';
+                }
+                openModal('orderDetailModal');
+            });
+        });
+
+        document.querySelectorAll('.js-confirm-purchase').forEach(function (el) {
+            el.addEventListener('click', function (e) {
+                e.preventDefault();
+                openModal('confirmPurchaseModal');
+            });
+        });
+
+        document.querySelectorAll('.js-write-review').forEach(function (el) {
+            el.addEventListener('click', function (e) {
+                e.preventDefault();
+                const row = el.closest('.js-order-row');
+                if (row) {
+                    document.getElementById('reviewProductName').textContent = row.getAttribute('data-product');
+                }
+                openModal('writeReviewModal');
+            });
+        });
+
+        document.querySelectorAll('.js-return-request').forEach(function (el) {
+            el.addEventListener('click', function (e) {
+                e.preventDefault();
+                const row = el.closest('.js-order-row');
+                if (row) {
+                    document.getElementById('returnDate').textContent = row.getAttribute('data-date');
+                    document.getElementById('returnOrderNo').textContent = '주문번호 : ' + row.getAttribute('data-order-no');
+                    document.getElementById('returnCompany').textContent = row.getAttribute('data-company');
+                    document.getElementById('returnProduct').textContent = row.getAttribute('data-product');
+                    document.getElementById('returnQty').textContent = '수량 : ' + row.getAttribute('data-qty') + ' 개';
+                    document.getElementById('returnPrice').textContent = row.getAttribute('data-price');
+                }
+                openModal('returnRequestModal');
+            });
+        });
+
+        document.querySelectorAll('.js-exchange-request').forEach(function (el) {
+            el.addEventListener('click', function (e) {
+                e.preventDefault();
+                const row = el.closest('.js-order-row');
+                if (row) {
+                    document.getElementById('exchangeDate').textContent = row.getAttribute('data-date');
+                    document.getElementById('exchangeOrderNo').textContent = '주문번호 : ' + row.getAttribute('data-order-no');
+                    document.getElementById('exchangeCompany').textContent = row.getAttribute('data-company');
+                    document.getElementById('exchangeProduct').textContent = row.getAttribute('data-product');
+                    document.getElementById('exchangeQty').textContent = '수량 : ' + row.getAttribute('data-qty') + ' 개';
+                    document.getElementById('exchangePrice').textContent = row.getAttribute('data-price');
+                }
+                openModal('exchangeRequestModal');
+            });
+        });
+    }
+
+    // ---- 페이지네이션 렌더링 ----
+    function renderPagination() {
+        const totalFilteredPages = Math.max(1, Math.ceil(filteredData.length / PAGE_SIZE));
+        const pageNumbersEl = document.getElementById('pageNumbers');
+        pageNumbersEl.innerHTML = '';
+
+        for (let p = 1; p <= totalFilteredPages; p++) {
+            const span = document.createElement('a');
+            span.href = '#';
+            span.textContent = p;
+            span.className = 'page-num' + (p === currentPage ? ' active' : '');
+            span.addEventListener('click', function (e) {
+                e.preventDefault();
+                currentPage = p;
+                renderOrderRows();
+                renderPagination();
+            });
+            pageNumbersEl.appendChild(span);
+        }
+
+        document.getElementById('pagePrev').classList.toggle('disabled', currentPage === 1);
+        document.getElementById('pageNext').classList.toggle('disabled', currentPage === totalFilteredPages);
+    }
+
+    document.getElementById('pagePrev').addEventListener('click', function (e) {
+        e.preventDefault();
+        if (currentPage > 1) {
+            currentPage--;
+            renderOrderRows();
+            renderPagination();
+        }
+    });
+
+    document.getElementById('pageNext').addEventListener('click', function (e) {
+        e.preventDefault();
+        const totalFilteredPages = Math.max(1, Math.ceil(filteredData.length / PAGE_SIZE));
+        if (currentPage < totalFilteredPages) {
+            currentPage++;
+            renderOrderRows();
+            renderPagination();
+        }
+    });
+
+    // ---- 기간별조회 동작 ----
+    // 1주일 / 15일 / 1개월 라디오 선택 시 해당 일수만큼 최근 데이터 필터링
+    document.querySelectorAll('input[name="periodType"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            // 다른 조회방식(개월선택, 기간선택) 선택값 초기화
+            document.getElementById('periodMonthSelect').value = '0';
+            document.getElementById('periodStartDate').value = '';
+            document.getElementById('periodEndDate').value = '';
+        });
+    });
+
+    // 5개월 단위 select 변경 시 라디오/날짜 초기화
+    document.getElementById('periodMonthSelect').addEventListener('change', function () {
+        document.querySelectorAll('input[name="periodType"]').forEach(function (radio) {
+            radio.checked = false;
+        });
+        document.getElementById('periodStartDate').value = '';
+        document.getElementById('periodEndDate').value = '';
+    });
+
+    // 시작/종료 날짜 입력 시 라디오/개월선택 초기화
+    document.querySelectorAll('.period-date-input').forEach(function (input) {
+        input.addEventListener('change', function () {
+            document.querySelectorAll('input[name="periodType"]').forEach(function (radio) {
+                radio.checked = false;
+            });
+            document.getElementById('periodMonthSelect').value = '0';
+        });
+    });
+
+    document.getElementById('periodSearchBtn').addEventListener('click', function () {
+        const checkedPeriod = document.querySelector('input[name="periodType"]:checked');
+        const monthSelectValue = document.getElementById('periodMonthSelect').value;
+        const startDateValue = document.getElementById('periodStartDate').value;
+        const endDateValue = document.getElementById('periodEndDate').value;
+
+        let rangeStart = null;
+        let rangeEnd = null;
+
+        if (startDateValue || endDateValue) {
+            // 3) 시작~종료 날짜 조회 (최대 1년치, 둘 다 입력된 경우만 동작)
+            if (!startDateValue || !endDateValue) {
+                alert('시작일과 종료일을 모두 선택해주세요.');
+                return;
+            }
+
+            rangeStart = new Date(startDateValue);
+            rangeEnd = new Date(endDateValue);
+
+            if (rangeStart > rangeEnd) {
+                alert('시작일이 종료일보다 늦을 수 없습니다.');
+                return;
+            }
+
+            const oneYearLater = new Date(rangeStart);
+            oneYearLater.setFullYear(oneYearLater.getFullYear() + 1);
+            if (rangeEnd > oneYearLater) {
+                alert('조회 기간은 최대 1년까지 가능합니다.');
+                return;
+            }
+        } else if (checkedPeriod) {
+            // 1) 1주일 / 15일 / 1개월 단위 조회
+            const days = parseInt(checkedPeriod.getAttribute('data-days'), 10);
+            rangeEnd = new Date(today);
+            rangeStart = new Date(today);
+            rangeStart.setDate(rangeStart.getDate() - days);
+        } else {
+            // 2) 현재 월에서 최신 5개월까지 조회 (개월 select)
+            const monthsAgo = parseInt(monthSelectValue, 10);
+            rangeEnd = new Date(today);
+            rangeStart = new Date(today);
+            rangeStart.setMonth(rangeStart.getMonth() - (monthsAgo + 1));
+        }
+
+        filteredData = orderData.filter(function (item) {
+            const itemDate = new Date(item.date);
+            return itemDate >= rangeStart && itemDate <= rangeEnd;
+        });
+
+        currentPage = 1;
+        renderOrderRows();
+        renderPagination();
+    });
+
+    // ---- 초기 렌더링 ----
+    renderOrderRows();
+    renderPagination();
 </script>
 
 </body>
