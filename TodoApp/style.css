@@ -1,0 +1,52 @@
+.container{
+    width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 50px auto;
+}
+
+.input-group{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#inputTodo{
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+#btnAdd{
+    width: 80px;
+    border: none;
+    background-color: #0d6efd;
+    color: white;
+}
+#btnAdd:hover{
+    background-color: #0b5ed7;
+}
+
+#todoList li{
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    background-color: #fafafa;
+}
+
+.delete-btn{
+    margin-left: auto;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: none;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.delete-btn:hover{
+    color:darkred;
+}
